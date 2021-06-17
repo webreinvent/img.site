@@ -21,8 +21,12 @@ app.get('/', function (req, reply) {
     return  reply.type('text/html').send(data);
 })
 
+
 // Declare a route
 app.get('/p', function (req, reply) {
+
+    console.log('--->', req);
+
 
     var svg = require('svg-builder')
         .width(125)
@@ -31,9 +35,66 @@ app.get('/p', function (req, reply) {
     var logo = svg
         .circle({
             r: 40,
-            fill: 'none',
+            fill: '#CB3728',
             'stroke-width': 1,
             stroke: '#CB3728',
+            hue: "50",
+            saturation: "50",
+            cx: 42,
+            cy: 82
+        }).circle({
+            r: 40,
+            fill: 'none',
+            'stroke-width': 1,
+            stroke: '#3B92BC',
+            cx: 84,
+            cy: 82
+        }).text({
+            x: 10,
+            y: 20,
+            'font-family': 'helvetica',
+            'font-size': 15,
+            stroke : '#fff',
+            fill: '#fff'
+        }, 'My logo').render();
+
+    return  reply.type('image/svg+xml').send(logo);
+})
+
+
+// Declare a route
+app.get('/p/:wnh/:color', function (req, reply) {
+
+    console.log('--->', req);
+
+    let wnh = 300;
+    let color = 'grey';
+
+    if(req.params.wnh)
+    {
+        wnh = req.params.wnh;
+    }
+
+    if(req.params.wnh)
+    {
+        wnh = req.params.wnh;
+    }
+
+
+
+
+    var svg = require('svg-builder')
+        .width(125)
+        .height(125);
+
+    var logo = svg
+        .circle({
+            r: 40,
+            fill: '#CB3728',
+            'stroke-width': 1,
+            stroke: '#CB3728',
+            hue: "50",
+            saturation: "50",
             cx: 42,
             cy: 82
         }).circle({
@@ -57,8 +118,12 @@ app.get('/p', function (req, reply) {
 
 
 // Run the server!
-//app.listen(80, 'getsrc.ondigitalocean.app', (err, address) => {
-app.listen(8080, '0.0.0.0', (err, address) => {
+app.listen(4000,  (err, address) => {
+
+/*
+GitHub
+ */
+//app.listen(8080, '0.0.0.0', (err, address) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
