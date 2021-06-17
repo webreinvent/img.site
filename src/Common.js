@@ -63,12 +63,18 @@ module.exports = {
             attrs.height = attrs.width;
         }
 
-        attrs.color_hex = this.getColorHex(attrs.color);
+        //console.log('--->attrs.color', attrs.color);
+
+        if(attrs.color !== undefined && attrs.color)
+        {
+            attrs.color_hex = this.getColorHex(attrs.color);
+        }
+
 
         for (const [key, value] of Object.entries(attrs)) {
             this.attrs[key] = value;
         }
-        console.log('final attrs--->', this.attrs);
+        //console.log('final attrs--->', this.attrs);
 
     },
     getColorHex: function (string)
@@ -80,7 +86,8 @@ module.exports = {
         } else if(validHexColor.check('#'+string))
         {
             hex = '#'+string;
-        } else{
+        } else {
+
             let input_color = slugify(string, {lower:true});
             let slug = null;
             let color = namedColors.find(color => slugify(color.name, {lower: true}) === input_color)
@@ -131,13 +138,13 @@ module.exports = {
         let label = '';
         let color = invert(this.attrs.color_hex);
 
-        if(this.attrs.label_color)
+        if(this.attrs.label_color && 'null' != this.attrs.label_color)
         {
 
             color = this.getColorHex(this.attrs.label_color);
         }
 
-        console.log('--->color label', color);
+        //console.log('--->color label', color);
 
         if(this.attrs.size)
         {
