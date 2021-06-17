@@ -50,7 +50,7 @@ module.exports = {
             this.attrs[key] = value;
         }
 
-        //console.log('--->this.attrs', this.attrs);
+        console.log('--->this.attrs', this.attrs);
 
     },
     getSvg: function (attrs)
