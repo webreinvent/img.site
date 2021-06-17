@@ -4,11 +4,11 @@ const path = require('path')
 // Require the framework and instantiate it
 const app = require('fastify')({
     logger: true,
-    http2: true,
+    /*http2: true,
     https: {
     key: fs.readFileSync(path.join(__dirname, './../../ssl/', 'keys', 'b50e1_531d5_9aeb5e1e77b5417ca98f9ce688790876.key')),
     cert: fs.readFileSync(path.join(__dirname, './../../ssl/', 'certs', 'nuxt_getdemo_dev_b50e1_531d5_1629244799_b091936f52e600bb51995f5ce27294cd.crt'))
-    }
+    }*/
 })
 
 
