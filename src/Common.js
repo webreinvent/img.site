@@ -1,4 +1,3 @@
-const toHex = require('colornames')
 const namedColors = require('color-name-list');
 const slugify = require('slugify')
 
