@@ -60,12 +60,12 @@ app.get('/p/:width/:height/:color/:type', function (req, reply) {
 
 
 // Run the server!
-app.listen(4000,  (err, address) => {
+//app.listen(4000,  (err, address) => {
 
 /*
 GitHub
  */
-//app.listen(8080, '0.0.0.0', (err, address) => {
+app.listen(8080, '0.0.0.0', (err, address) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
