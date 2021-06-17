@@ -4,8 +4,8 @@ const ejs = require('ejs')
 
 const common = require('./Common')
 
-let host = 'http://127.0.0.1:4000';
 //let host = 'http://127.0.0.1:4000';
+let host = 'https://getsrc-3o9kb.ondigitalocean.app';
 let assets = {
     host: host,
 }
