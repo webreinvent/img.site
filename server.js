@@ -58,7 +58,7 @@ app.get('/p', function (req, reply) {
 
 // Run the server!
 //app.listen(80, 'getsrc.ondigitalocean.app', (err, address) => {
-app.listen(80, (err, address) => {
+app.listen(8080, (err, address) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
