@@ -51,6 +51,7 @@ module.exports = {
             size: false,
             label: null,
             label_color: null,
+            label_font_size: 1.1,
         }
 
         if(!attrs.width)
@@ -74,6 +75,17 @@ module.exports = {
         for (const [key, value] of Object.entries(attrs)) {
             this.attrs[key] = value;
         }
+
+        if(parseInt(this.attrs.width) > 10000)
+        {
+            this.attrs.width = 10000
+        }
+
+        if(parseInt(this.attrs.height) > 10000)
+        {
+            this.attrs.height = 10000
+        }
+
         //console.log('final attrs--->', this.attrs);
 
     },
@@ -116,12 +128,12 @@ module.exports = {
     {
         let label = '';
 
-        if(this.attrs.size && this.attrs.size==true)
+        if(this.attrs.size && this.attrs.size=='true')
         {
             label += this.attrs.width+'x'+this.attrs.height;
         }
 
-        if(this.attrs.size && this.attrs.size==true && this.attrs.label)
+        if(this.attrs.size && this.attrs.size=='true' && this.attrs.label)
         {
             label += ' - ';
         }
@@ -130,6 +142,10 @@ module.exports = {
         {
             label += this.attrs.label;
         }
+
+        console.log('--->', this.attrs);
+
+        console.log('label--->', label);
 
         return label;
     },
@@ -146,9 +162,9 @@ module.exports = {
 
         //console.log('--->color label', color);
 
-        if(this.attrs.size)
+        if(this.attrs.size || this.attrs.label)
         {
-            label = '<text x="50%" y="50%" font-family="monospace" fill="'+color+'" dominant-baseline="middle" text-anchor="middle">' +
+            label = '<text x="50%" y="50%" font-family="monospace" font-size="'+this.attrs.label_font_size+'em" fill="'+color+'" dominant-baseline="middle" text-anchor="middle">' +
                 this.labelText()
                 +'</text>';
         }
