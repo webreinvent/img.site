@@ -1,9 +1,15 @@
+const fs = require('fs')
+const path = require('path')
+
 // Require the framework and instantiate it
 const app = require('fastify')({
-    logger: true
+    logger: true,
+    http2: true,
+    https: {
+    key: fs.readFileSync(path.join(__dirname, './../../ssl/', 'keys', 'b50e1_531d5_9aeb5e1e77b5417ca98f9ce688790876.key')),
+    cert: fs.readFileSync(path.join(__dirname, './../../ssl/', 'certs', 'nuxt_getdemo_dev_b50e1_531d5_1629244799_b091936f52e600bb51995f5ce27294cd.crt'))
+    }
 })
-
-const path = require('path')
 
 
 
@@ -51,7 +57,7 @@ app.get('/p', function (req, reply) {
 
 
 // Run the server!
-app.listen(4000, (err, address) => {
+app.listen(80, 'getsrc.ondigitalocean.app', (err, address) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
