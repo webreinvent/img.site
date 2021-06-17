@@ -1,11 +1,22 @@
 const fs = require('fs')
 const path = require('path')
 const ejs = require('ejs')
+const { Readable } = require('stream')
 
 const common = require('./Common')
 
-//let host = 'http://127.0.0.1:4000';
-let host = 'https://getsrc-3o9kb.ondigitalocean.app';
+let is_production;
+
+is_production = false
+is_production = true
+
+
+let host = 'http://127.0.0.1:4000';
+
+if(is_production)
+{
+    host = 'https://getsrc-3o9kb.ondigitalocean.app';
+}
 let assets = {
     host: host,
 }
@@ -34,41 +45,48 @@ app.get('/', function (req, reply) {
 
 // Declare a route
 app.get('/p', function (req, reply) {
-    let src = common.getSvg(req.params);
+    let src = common.getSvg(req);
     return  reply.type('image/svg+xml').send(src);
 })
 
 app.get('/p/:width', function (req, reply) {
-    let src = common.getSvg(req.params);
+    let src = common.getSvg(req);
     return  reply.type('image/svg+xml').send(src);
 })
 
 app.get('/p/:width/:height', function (req, reply) {
-    let src = common.getSvg(req.params);
+    let src = common.getSvg(req);
     return  reply.type('image/svg+xml').send(src);
 })
 
 app.get('/p/:width/:height/:color', function (req, reply) {
-    let src = common.getSvg(req.params);
+    let src = common.getSvg(req);
     return  reply.type('image/svg+xml').send(src);
 })
 
 app.get('/p/:width/:height/:color/:type', function (req, reply) {
-    let src = common.getSvg(req.params);
+    let src = common.getSvg(req);
     return  reply.type('image/svg+xml').send(src);
 })
 
 
 // Run the server!
-//app.listen(4000,  (err, address) => {
-
-/*
-GitHub
- */
-app.listen(8080, '0.0.0.0', (err, address) => {
-    if (err) {
-        app.log.error(err)
-        process.exit(1)
-    }
-    //app.log.info(`server listening on ${address}`)
-})
+if(!is_production)
+{
+    app.listen(4000,  (err, address) => {
+        if (err) {
+            app.log.error(err)
+            process.exit(1)
+        }
+        //app.log.info(`server listening on ${address}`)
+    })
+} else
+{
+    app.listen(8080, '0.0.0.0', (err, address) => {
+        if (err) {
+            app.log.error(err)
+            process.exit(1)
+        }
+        //app.log.info(`server listening on ${address}`)
+    })
+}

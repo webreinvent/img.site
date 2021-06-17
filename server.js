@@ -4,7 +4,7 @@ const chokidar = require('chokidar')
 
 //const watcher = fs.watch('/')
 
-let currentChild = child.fork('./src/server.js')
+let currentChild = child.fork('./src/index.js')
 
 
 
@@ -18,6 +18,6 @@ watcher.on('all', function (){
         currentChild.kill()
     }
     // reset the child process
-    currentChild = child.fork('./src/server.js')
+    currentChild = child.fork('./src/index.js')
 
 });

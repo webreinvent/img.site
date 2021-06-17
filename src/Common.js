@@ -1,69 +1,33 @@
 const namedColors = require('color-name-list');
 const slugify = require('slugify')
+const invert = require('invert-color');
 
 const validHexColor = require('valid-hex-color');
 
 
 module.exports = {
 
-    attrs: {
-        width: 300,
-        height: 300,
-        color: 'grey',
-        color_hex: '#666666',
-        type: 'stripes',
-    },
-    init: function (attrs)
+    attrs: {},
+    getSvg: function (res)
     {
 
-        if(!attrs.width)
+        let attrs = res.params;
+        if(Object.keys(res.query).length>0)
         {
-            attrs.width = 300;
-        }
-
-
-        if(!attrs.height)
-        {
-            attrs.height = attrs.width;
-        }
-
-        if(attrs.color )
-        {
-            if(validHexColor.check('#'+attrs.color))
-            {
-                attrs.color_hex = '#'+attrs.color;
-            } else{
-                let input_color = slugify(attrs.color, {lower:true});
-                let slug = null;
-                let color = namedColors.find(color => slugify(color.name, {lower: true}) === input_color)
-                if(color !== undefined && color && color.hex)
-                {
-                    attrs.color_hex = color.hex;
-                } else{
-                    attrs.color_hex = '#666666'
-                }
+            for (const [key, value] of Object.entries(res.query)) {
+                attrs[key] = value;
             }
-
         }
 
-        for (const [key, value] of Object.entries(attrs)) {
-            this.attrs[key] = value;
-        }
-
-        console.log('--->this.attrs', this.attrs);
-
-    },
-    getSvg: function (attrs)
-    {
         this.init(attrs);
 
-        let code = this.stripes();
+        let pattern = this.stripes();
 
         switch (this.attrs.type)
         {
             case 'solid-stripes':
 
-                code = this.solidStripes();
+                pattern = this.solidStripes();
 
                 break;
             case 'circle':
@@ -71,8 +35,66 @@ module.exports = {
                 break;
         }
 
-        return code;
+        pattern += this.label();
+
+        return this.prefixCode()+pattern+this.suffixCode();
+
     },
+    init: function (attrs)
+    {
+        this.attrs = {
+            width: 300,
+            height: 300,
+            color: 'grey',
+            color_hex: '#666666',
+            type: 'stripes',
+            size: false,
+            label: null,
+            label_color: null,
+        }
+
+        if(!attrs.width)
+        {
+            attrs.width = 300;
+        }
+
+        if(!attrs.height)
+        {
+            attrs.height = attrs.width;
+        }
+
+        attrs.color_hex = this.getColorHex(attrs.color);
+
+        for (const [key, value] of Object.entries(attrs)) {
+            this.attrs[key] = value;
+        }
+        console.log('final attrs--->', this.attrs);
+
+    },
+    getColorHex: function (string)
+    {
+        let hex = null;
+        if(validHexColor.check(string))
+        {
+            hex = string;
+        } else if(validHexColor.check('#'+string))
+        {
+            hex = '#'+string;
+        } else{
+            let input_color = slugify(string, {lower:true});
+            let slug = null;
+            let color = namedColors.find(color => slugify(color.name, {lower: true}) === input_color)
+            if(color !== undefined && color && color.hex)
+            {
+                hex = color.hex;
+            } else{
+                hex = '#666666'
+            }
+        }
+
+        return hex;
+    },
+
     prefixCode: function ()
     {
         let code = '<svg xmlns="http://www.w3.org/2000/svg" width="'+this.attrs.width+'" height="'+this.attrs.height+'" >';
@@ -83,49 +105,48 @@ module.exports = {
         let code = '</svg>';
         return code;
     },
-
-    circle: function () {
-        var svg = require('svg-builder')
-            .width(125)
-            .height(125);
-
-        var logo = svg
-            .circle({
-                r: 40,
-                fill: '#CB3728',
-                'stroke-width': 1,
-                stroke: '#CB3728',
-                hue: "50",
-                saturation: "50",
-                cx: 42,
-                cy: 82
-            }).circle({
-                r: 40,
-                fill: 'none',
-                'stroke-width': 1,
-                stroke: '#3B92BC',
-                cx: 84,
-                cy: 82
-            }).text({
-                x: 10,
-                y: 20,
-                'font-family': 'helvetica',
-                'font-size': 15,
-                stroke : '#fff',
-                fill: '#fff'
-            }, 'My logo').render();
-
-
-        return logo;
-
-    },
-    polygon: function ()
+    labelText: function ()
     {
-        let pattern = '<polygon fill="#F4D37D" stroke="#E4AF4C" stroke-width="2" points="622,118.5 583,47.5 494,113.5 430,37.5 378,89.5 506,162.5" />';
+        let label = '';
 
-        let code = this.prefixCode()+pattern+this.suffixCode();
+        if(this.attrs.size && this.attrs.size==true)
+        {
+            label += this.attrs.width+'x'+this.attrs.height;
+        }
 
-        return code;
+        if(this.attrs.size && this.attrs.size==true && this.attrs.label)
+        {
+            label += ' - ';
+        }
+
+        if(this.attrs.label)
+        {
+            label += this.attrs.label;
+        }
+
+        return label;
+    },
+    label: function ()
+    {
+        let label = '';
+        let color = invert(this.attrs.color_hex);
+
+        if(this.attrs.label_color)
+        {
+
+            color = this.getColorHex(this.attrs.label_color);
+        }
+
+        console.log('--->color label', color);
+
+        if(this.attrs.size)
+        {
+            label = '<text x="50%" y="50%" font-family="monospace" fill="'+color+'" dominant-baseline="middle" text-anchor="middle">' +
+                this.labelText()
+                +'</text>';
+        }
+
+        return label;
     },
     stripes: function ()
     {
@@ -136,11 +157,9 @@ module.exports = {
             '\t\t\t<line x1="0" y="0" x2="0" y2="9.5" stroke="'+this.attrs.color_hex+'" stroke-width="1" />\n' +
             '\t\t</pattern>\n' +
             '\t</defs>\n' +
-            '\t<rect width="100%" height="100%" fill="url(#pattern_310cp0)" opacity="1" />'
+            '\t<rect width="100%" height="100%" fill="url(#pattern_310cp0)" opacity="1" />';
 
-        let code = this.prefixCode()+pattern+this.suffixCode();
-
-        return code;
+        return pattern;
 
     },
     solidStripes: function ()
@@ -154,10 +173,7 @@ module.exports = {
             '\t</defs>\n' +
             '\t<rect width="100%" height="100%" fill="url(#pattern_QysW)" opacity="1" />'
 
-        let code = this.prefixCode()+pattern+this.suffixCode();
-
-        return code;
-
+        return pattern;
     },
 
 
