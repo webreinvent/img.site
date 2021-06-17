@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+</head>
+
+<body>
+<div id="app">
+
+    <div class="container is-fullhd">
+
+        <section class="hero">
+            <div class="hero-body has-text-centered" style="text-align: center;">
+                <div class="container  has-text-centered">
+                    <p class="title">
+                        GetSRC
+                    </p>
+                    <p class="subtitle" >
+                        <br/>
+                        Quick Image Placeholders
+                        <br/>
+
+
+
+                    </p>
+
+                    <p style="margin-bottom: 15px">
+                        <span class="tag is-dark" style="font-size: 18px; font-family: Consolas;">
+                        <%= host %>/p/:width/:height/:color/:type
+                        </span>
+                    </p>
+
+
+                    <p style="margin-bottom: 15px">
+                        <span class="tag" style="font-size: 18px; font-family: Consolas;">
+                        <%= host %>/p
+                        </span>
+                        <br/>
+                        <br/>
+
+                        <img src="<%= host %>/p"/>
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+        </section>
+
+
+    </div>
+
+
+
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<!-- Individual components -->
+<script src="https://unpkg.com/buefy/dist/components/table"></script>
+<script src="https://unpkg.com/buefy/dist/components/input"></script>
+
+<script>
+    new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>
