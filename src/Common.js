@@ -54,12 +54,13 @@ module.exports = {
             label_font_size: 1.1,
         }
 
-        if(!attrs.width)
+
+        if(!attrs.width  || !Number.isInteger(parseInt(attrs.width)))
         {
             attrs.width = 300;
         }
 
-        if(!attrs.height)
+        if(!attrs.height || !Number.isInteger(parseInt(attrs.height)))
         {
             attrs.height = attrs.width;
         }
@@ -75,6 +76,8 @@ module.exports = {
         for (const [key, value] of Object.entries(attrs)) {
             this.attrs[key] = value;
         }
+
+
 
         if(parseInt(this.attrs.width) > 10000)
         {
@@ -164,7 +167,7 @@ module.exports = {
 
         if(this.attrs.size || this.attrs.label)
         {
-            label = '<text x="50%" y="50%" font-family="monospace" font-size="'+this.attrs.label_font_size+'em" fill="'+color+'" dominant-baseline="middle" text-anchor="middle">' +
+            label = '<text x="50%" y="50%" font-family="monospace" font-size="'+this.attrs.label_font_size+'px" fill="'+color+'" dominant-baseline="middle" text-anchor="middle">' +
                 this.labelText()
                 +'</text>';
         }

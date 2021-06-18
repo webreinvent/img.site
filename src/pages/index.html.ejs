@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-swatches/dist/vue-swatches.css">
 </head>
 
 <body>
@@ -14,36 +16,156 @@
         <section class="hero">
             <div class="hero-body has-text-centered" style="text-align: center;">
                 <div class="container  has-text-centered">
-                    <p class="title">
-                        GetSRC
-                    </p>
-                    <p class="subtitle" >
-                        <br/>
-                        Quick Image Placeholders
-                        <br/>
 
-                    </p>
+                    <div class="columns">
+                        <div class="column">
+                            <p class="title">
+                                IMG.site
+                            </p>
+                            <p class="subtitle" >
+                                <br/>
+                                Quick Image Placeholders
+                                <br/>
 
-                    <p style="margin-bottom: 15px">
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="columns">
+                        <div class="column">
+                            <p style="margin-bottom: 15px">
                         <span class="tag is-dark" style="font-size: 18px; font-family: Consolas;">
                         <%= host %>/p/:width/:height/:color/:type?size=true&label=image&label_color=f00&label_font_size=1.5
                         </span>
 
 
 
-                    </p>
+                            </p>
+
+                            <p>
+                                {{inputs}}
+                                {{query}}
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="columns is-multiple">
+                        <!--left-->
+                        <div class="column is-half">
 
 
-                    <p style="margin-bottom: 15px">
-                        <span class="tag" style="font-size: 18px; font-family: Consolas;">
-                        <%= host %>/p
-                        </span>
-                        <br/>
-                        <br/>
 
-                        <img src="<%= host %>/p"/>
 
-                    </p>
+                            <b-field grouped>
+
+                                <b-field label="Width">
+                                    <b-input v-model="inputs.width" placeholder="width"></b-input>
+                                </b-field>
+
+                                <b-field label="Height">
+                                    <b-input v-model="inputs.height" placeholder="height"></b-input>
+                                </b-field>
+
+
+                                <b-field label="Color">
+                                    <v-swatches
+                                            v-model="inputs.color"
+                                            show-fallback
+                                            popover-x="left"
+                                    ></v-swatches>
+                                </b-field>
+
+                                <b-field label="Type">
+                                    <b-select v-model="inputs.type"  placeholder="Select a name">
+                                        <option value="null">
+                                            Stripes
+                                        </option>
+                                        <option value="solid-stripes">
+                                            Solid Stripes
+                                        </option>
+                                    </b-select>
+                                </b-field>
+
+
+                            </b-field>
+
+                            <b-field grouped>
+
+                                <b-field >
+                                    <b-switch v-model="query.size">Show Size</b-switch>
+                                </b-field>
+
+
+                                <b-field  label="Label">
+                                    <b-input v-model="query.label" placeholder="label"></b-input>
+                                </b-field>
+
+                                <b-field label="Label Color">
+                                    <v-swatches
+                                            v-model="label_color"
+                                            show-fallback
+                                            popover-x="left"
+                                    ></v-swatches>
+                                </b-field>
+
+
+
+                            </b-field>
+
+                            <b-field label="Font Size">
+                                <b-slider size="is-small"
+                                          tooltip-always
+                                          :min="15"
+                                          :max="25" :step="1"
+                                          v-model="query.label_font_size">
+                                </b-slider>
+
+                                <!--<b-input v-model="query.label_font_size" placeholder=""></b-input>-->
+
+                            </b-field>
+
+
+                        </div>
+                        <!--/left-->
+
+                        <!--right-->
+                        <div class="column is-half">
+
+                            <div style="font-size: 18px; font-family: Consolas; word-wrap: break-word; background: #f2f2f2;">
+                                {{url}}
+                            </div>
+
+                            <p style="margin-bottom: 15px">
+
+                                <br/>
+                                <br/>
+
+                                <img :src="url"/>
+
+                            </p>
+
+                        </div>
+                        <!--/right-->
+
+
+                    </div>
+
+
+
+
+                    <div class="columns is-multiple">
+
+                        <div class="column is-half is-offset-one-quarter">
+
+
+                        </div>
+
+                    </div>
+
+
 
 
 
@@ -64,13 +186,185 @@
 </div>
 
 <script src="https://unpkg.com/vue"></script>
+
+<script src="https://unpkg.com/vue-swatches"></script>
+
 <!-- Individual components -->
 <script src="https://unpkg.com/buefy/dist/components/table"></script>
+<script src="https://unpkg.com/buefy/dist/components/field"></script>
 <script src="https://unpkg.com/buefy/dist/components/input"></script>
+<script src="https://unpkg.com/buefy/dist/components/switch"></script>
+<script src="https://unpkg.com/buefy/dist/components/select"></script>
+<script src="https://unpkg.com/buefy/dist/components/slider"></script>
 
 <script>
     new Vue({
-        el: '#app'
+        el: '#app',
+        components: {
+            VSwatches: window['vue-swatches']
+        },
+        data:{
+            url: null,
+            label_color: null,
+            inputs:{
+                width: null,
+                height: null,
+                color: null,
+                color_hex: null,
+                type: null,
+            },
+            query:{
+                size: null,
+                label: null,
+                label_color: null,
+                label_font_size: null,
+            }
+        },
+        computed: {
+        },
+        watch:{
+            'inputs': {
+                deep: true,
+                handler(new_val, old_val) {
+                    this.getURLString()
+                }
+            },
+            'inputs.color': {
+                deep: true,
+                handler(new_val, old_val) {
+                    this.inputs.color_hex = new_val.replace("#", '');
+                    this.getURLString()
+                }
+            },
+            'query': {
+                deep: true,
+                handler(new_val, old_val) {
+                    this.getURLString()
+                }
+            },
+            'query.label_color': {
+                deep: true,
+                handler(new_val, old_val) {
+                    if(!this.query.label)
+                    {
+                        this.query.size = true;
+                    }
+                    this.getURLString()
+                }
+            },
+            'query.label_font_size': {
+                deep: true,
+                handler(new_val, old_val) {
+                    if(!this.query.label)
+                    {
+                        this.query.size = true;
+                    }
+                    this.getURLString()
+                }
+            },
+            'label_color': {
+                deep: true,
+                handler(new_val, old_val) {
+                    this.query.label_color = new_val.replace("#", '');
+                    this.getURLString()
+                }
+            },
+        },
+        mounted() {
+            //---------------------------------------------------------------------
+            this.getURLString()
+            //---------------------------------------------------------------------
+        },
+        methods:{
+            getURLString: function ()
+            {
+                this.setParams();
+
+                let url = '<%= host %>/p';
+
+
+                if(this.inputs.width)
+                {
+                    url += '/'+this.inputs.width;
+                }
+
+                if(this.inputs.height)
+                {
+                    url += '/'+this.inputs.height;
+                }
+
+                if(this.inputs.color_hex)
+                {
+                    url += '/'+this.inputs.color_hex;
+                }
+
+                if(this.inputs.type)
+                {
+                    url += '/'+this.inputs.type;
+
+                }
+
+                if(this.label_color_hex)
+                {
+                    this.query.label_color = this.label_color_hex;
+                }
+
+                let query_inputs = JSON.parse(JSON.stringify(this.query));
+
+                for (let param in query_inputs) {
+                    if (query_inputs[param] === undefined /* In case of undefined assignment */
+                        || query_inputs[param] === null
+                        || query_inputs[param] === "")
+                    {
+                        delete query_inputs[param];
+                    }
+                }
+
+
+
+                let query = new URLSearchParams(query_inputs).toString()
+
+                console.log('--->', query);
+
+                this.url = url;
+
+                if(query.length > 0)
+                {
+                    this.url += '?'+query;
+
+                }
+
+                console.log('--->url', this.url);
+            },
+            //-----------------------------------------
+            setParams: function (){
+
+                if(this.inputs.color_hex && !this.inputs.width)
+                {
+                    this.inputs.width = 300;
+                }
+
+                if(this.inputs.color_hex &&  !this.inputs.height)
+                {
+                    this.inputs.height = 300;
+                }
+            },
+            //-----------------------------------------
+            setWidthHeightColor: function (){
+                this.setWidthHeight();
+
+                console.log('--->', this.color);
+
+                if(!this.color)
+                {
+                    this.inputs.color_hex = '666666'
+
+                    console.log('--->this.inputs.color_hex', this.inputs.color_hex);
+
+                }
+            },
+            //-----------------------------------------
+        }
     })
 </script>
 </body>
