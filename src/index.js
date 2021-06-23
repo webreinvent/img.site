@@ -15,7 +15,7 @@ let host = 'http://127.0.0.1:4000';
 
 if(is_production)
 {
-    host = 'https://getsrc-3o9kb.ondigitalocean.app';
+    host = 'img.site';
 }
 let assets = {
     host: host,
