@@ -8,7 +8,261 @@
     <link rel="stylesheet" href="https://unpkg.com/vue-swatches/dist/vue-swatches.css">
 
     <style>
+        .hero-body {
+            padding: 1rem 3rem;
+        }
 
+        .logo {
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.75rem;
+            margin-bottom: 0;
+        }
+
+        .middle-warp {
+            border: 1px solid #c9c9c9;
+        }
+
+        .repeated-item {
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .repeated-item.right {
+            padding-right: 3rem;
+        }
+
+        .left {
+            border-right: 1px solid #c9c9c9;
+            position: relative;
+        }
+
+        .left h2 {
+            margin-bottom: 35px;
+        }
+
+        .left:before {
+            background: rgb(237, 30, 121);
+            background: linear-gradient(75deg, rgba(237, 30, 121, 1) 0%, rgba(110, 0, 99, 1) 100%);
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -1px;
+            width: 100%;
+            height: 4px;
+
+        }
+
+        .input, .select select, .taginput .taginput-container.is-focusable, .textarea {
+            border-radius: 0;
+            box-shadow: none;
+            width: 100%;
+            height: 42px;
+            font-weight: 600;
+        }
+
+        .input:active, .input:focus, .is-active.input, .is-active.textarea, .is-focused.input, .is-focused.textarea, .select select.is-active, .select select.is-focused, .select select:active, .select select:focus, .taginput .is-active.taginput-container.is-focusable, .taginput .is-focused.taginput-container.is-focusable, .taginput .taginput-container.is-focusable:active, .taginput .taginput-container.is-focusable:focus, .textarea:active, .textarea:focus {
+            border-color: #ed1e79;
+            box-shadow: none;
+
+        }
+
+        .select {
+            width: 100%;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: #717171;
+        }
+
+        .field.is-grouped .field:not(:last-child) {
+            margin-right: 6%;
+        }
+
+        .field-body .field .field {
+            width: 47%;
+            margin-bottom: 1rem;
+        }
+
+        .sb-flex {
+            border: 1px solid #dbdbdb;
+            display: flex;
+            align-items: center;
+            height: 42px;
+        }
+
+        .sb-flex .label {
+            order: 2;
+            margin: 0;
+            margin-left: 10px;
+            font-size: 13px;
+        }
+
+        .vue-swatches__trigger__wrapper
+        .vue-swatches__trigger {
+            border-radius: 0 !important;
+            border-width: 1px;
+            margin-left: -1px;
+            margin-top: -1px;
+        }
+
+        .vue-swatches {
+            line-height: 0;
+
+        }
+
+        .b-slider .b-slider-track {
+            background-image: -moz-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            background-image: -webkit-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            background-image: -ms-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+        }
+
+        .b-slider .b-slider-thumb-wrapper .b-slider-thumb, .switch input[type=checkbox]:checked + .check {
+
+            background-image: -moz-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            background-image: -webkit-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            background-image: -ms-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+
+        }
+
+        .b-slider .b-slider-thumb-wrapper .b-slider-thumb {
+            box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.61);
+            border: 4px solid #ffffff;
+            border-radius: 100%;
+        }
+
+        .b-tooltip.is-primary .tooltip-content {
+            background: #ffffff;
+            color: #717171;
+        }
+
+        .b-tooltip.is-top.is-primary .tooltip-content::before {
+            border-top-color: #dad4d4;
+        }
+
+        .label {
+            font-size: .75rem;
+            color: #717171;
+        }
+
+        .control-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #717171;
+        }
+
+        .img-output {
+            /*border: 1px solid rgb(221, 221, 221);*/
+            box-shadow: 0px 8px 95px 0px rgba(0, 0, 0, 0.14);
+            background: #f3f3f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 0;
+            overflow: hidden;
+
+
+        }
+
+        .img-output img {
+            max-width: none;
+        }
+
+        .output-url {
+            border-bottom: 1px solid #c9c9c9;
+            padding-bottom: 1.5rem;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .output-url:before, .output-url:after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            height: 1px;
+            width: 3rem;
+            background-color: #c9c9c9;
+            display: block;
+        }
+
+        .output-url:before {
+            left: -3rem;
+        }
+
+        .output-url:after {
+            right: -3rem;
+        }
+        .output-url .input{
+            font-family: ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace;
+            font-size: 12px;
+            color: #24292e;
+            font-weight: normal;
+            height: 34px;
+        }
+        .output-url  .button{
+            background-color: #f5f5f5;
+            border-color: #dbdbdb;
+            color: #7a7a7a;
+            box-shadow: none;
+            pointer-events: all;
+            height: 34px;
+            border-radius: 0;
+        }
+
+        .has-unit-px {
+            position: relative;
+        }
+
+        .has-unit-px:after {
+            content: 'px';
+            position: absolute;
+            font-size: 1rem;
+            color: #b2b2b2;
+            right: 0.9375rem;
+            top: 7px;
+
+        }
+
+        .has-unit-px .input {
+            padding-right: 35px;
+        }
+
+        .has-margin-top-15 {
+            margin-top: 1.5rem
+        }
+
+        button.is-primary {
+            background-image: -moz-linear-gradient(-49deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            background-image: -webkit-linear-gradient(-49deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            background-image: -ms-linear-gradient(-49deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            box-shadow: 0px 13px 51px 0px rgba(125, 4, 102, 0.31);
+            width: 229px;
+            height: 57px;
+
+        }
+
+        hr {
+            height: 1px;
+            background: #b8b8b8;
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+        .notices .toast{
+            opacity: 1;
+        }
+
+       /* .notices .toast.is-success {
+            background-image: -moz-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            background-image: -webkit-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+            background-image: -ms-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
+        }*/
     </style>
 
 
@@ -20,30 +274,31 @@
     <div class="container is-fullhd">
 
         <section class="hero">
-            <div class="hero-body has-text-centered">
-                <div class="container  has-text-centered">
+            <div class="hero-body">
+                <div class="container">
 
                     <div class="columns">
-                        <div class="column">
-                            <p class="title">
-                                IMG.site
-                            </p>
-                            <h1 class="title">Tool for everyday images</h1>
-                            <p class="subtitle" >
+                        <div class="column has-text-centered">
+                            <a href="<%= host %>"
+                               title="Generate colorful placeholders for your web sites and projects."
+                               class="logo">
+                                <img src="<%= host %>/public/img/logo.png" width="200" height="59" alt="IMG.site">
+                            </a>
+
+                            <h1>Tool for everyday images</h1>
+                            <p class="subtitle">
                                 Generate colorful placeholders for your web sites and projects.
                             </p>
                         </div>
                     </div>
 
 
-
-                    <div class="columns">
+                    <!--<div class="columns">
                         <div class="column">
                             <p style="margin-bottom: 15px">
                         <span class="tag is-dark" style="font-size: 18px; font-family: Consolas;">
                         <%= host %>/p/:width/:height/:color/:type?size=true&label=image&label_color=f00&label_font_size=1.5
                         </span>
-
 
 
                             </p>
@@ -54,106 +309,132 @@
                             </p>
 
                         </div>
-                    </div>
-
-                    <div class="columns is-multiple">
-                        <!--left-->
-                        <div class="column is-half">
-                            <h2>Quickly and easily create placeholder images</h2>
-                            <b-field grouped>
-
-                                <b-field label="Width" label-position="on-border">
-                                    <b-input v-model="inputs.width" placeholder="width"></b-input>
-                                </b-field>
-
-                                <b-field label="Height" label-position="on-border">
-                                    <b-input v-model="inputs.height" placeholder="height"></b-input>
-                                </b-field>
+                    </div>-->
 
 
-                                <b-field label="Image Color">
-                                    <v-swatches
-                                            v-model="inputs.color"
-                                            show-fallback
-                                            popover-x="left"
-                                    ></v-swatches>
-                                </b-field>
+                    <div class="middle-warp">
+                        <div class="columns is-multiple">
+                            <!--left-->
+                            <div class="column is-5">
+                                <div class="left repeated-item">
+                                    <h2>Quickly and easily create placeholder images</h2>
+                                    <b-field grouped>
 
-                                <b-field label="Type">
-                                    <b-select v-model="inputs.type"  placeholder="Select a name">
-                                        <option value="null">
-                                            Stripes
-                                        </option>
-                                        <option value="solid-stripes">
-                                            Solid Stripes
-                                        </option>
-                                    </b-select>
-                                </b-field>
+                                        <b-field label="Width" label-position="on-border" class="has-unit-px">
+                                            <b-input v-model="inputs.width"></b-input>
+                                        </b-field>
+
+                                        <b-field label="Height" label-position="on-border" class="has-unit-px">
+                                            <b-input v-model="inputs.height"></b-input>
+                                        </b-field>
+
+                                    </b-field>
+
+                                    <b-field grouped>
+
+                                        <b-field label="Image Color" class="sb-flex">
+                                            <v-swatches
+                                                    v-model="inputs.color"
+                                                    show-fallback
+                                                    popover-x="left"
+                                            ></v-swatches>
+                                        </b-field>
+
+                                        <b-field>
+                                            <b-select v-model="inputs.type" placeholder="Select a name">
+                                                <option value="">
+                                                    Image Type
+                                                </option>
+                                                <option value="null">
+                                                    Stripes
+                                                </option>
+                                                <option value="solid-stripes">
+                                                    Solid Stripes
+                                                </option>
+                                            </b-select>
+                                        </b-field>
+                                    </b-field>
+                                    <hr>
+                                    <b-field grouped>
+
+                                        <b-field label="Text Over Image" label-position="on-border">
+                                            <b-input v-model="query.label"></b-input>
+                                        </b-field>
+
+                                        <b-field label="Text Color" class="sb-flex">
+                                            <v-swatches
+                                                    v-model="label_color"
+                                                    show-fallback
+                                                    popover-x="left"
+                                            ></v-swatches>
+                                        </b-field>
 
 
-                            </b-field>
+                                    </b-field>
 
-                            <b-field grouped>
+                                    <b-field label="Text Size">
+                                        <b-slider size="is-medium"
+                                                  tooltip-always
+                                                  :min="15"
+                                                  :max="25" :step="1"
+                                                  v-model="query.label_font_size">
+                                        </b-slider>
 
-                                <b-field  label="Text Over Image">
-                                    <b-input v-model="query.label" placeholder="label"></b-input>
-                                </b-field>
+                                        <!--<b-input v-model="query.label_font_size" placeholder=""></b-input>-->
 
-                                <b-field label="Text Color">
-                                    <v-swatches
-                                            v-model="label_color"
-                                            show-fallback
-                                            popover-x="left"
-                                    ></v-swatches>
-                                </b-field>
+                                    </b-field>
 
+                                    <b-field class="has-margin-top-15">
+                                        <b-switch v-model="query.size">Show Text Over Image</b-switch>
 
+                                    </b-field>
+                                    <!-- <button type="button" class="button is-primary is-rounded has-margin-top-15">Primary</button>-->
 
-                            </b-field>
-
-                            <b-field label="Text Size">
-                                <b-slider size="is-small"
-                                          tooltip-always
-                                          :min="15"
-                                          :max="25" :step="1"
-                                          v-model="query.label_font_size">
-                                </b-slider>
-
-                                <!--<b-input v-model="query.label_font_size" placeholder=""></b-input>-->
-
-                            </b-field>
-
-                            <b-field >
-                                <b-switch v-model="query.size">Show Size</b-switch>
-                            </b-field>
+                                </div>
 
 
-                        </div>
-                        <!--/left-->
-
-                        <!--right-->
-                        <div class="column is-half">
-
-                            <div style="font-size: 18px; font-family: Consolas; word-wrap: break-word; background: #f2f2f2;">
-                                {{url}}
                             </div>
+                            <!--/left-->
 
-                            <p style="margin-bottom: 15px">
+                            <!--right-->
+                            <div class="column is-7">
+                                <div class="right repeated-item has-text-centered">
 
-                                <br/>
-                                <br/>
+                                    <div class="output-url">
+                                        <b-field>
+                                            <!--<b-input :value="url" expanded onClick="this.select(); "></b-input>-->
+                                            <b-input expanded :value="url" id="link-text" onClick="this.select();" ></b-input>
+                                            <p class="control" >
 
-                                <img :src="url"/>
+                                                <button class="button" @click="copyLink" >
+                                                    <svg aria-hidden="true" viewBox="0 0 16 16" version="1.1"
+                                                         data-view-component="true" height="16" width="16"
+                                                         class="octicon octicon-clippy js-clipboard-clippy-icon d-inline-block">
+                                                        <path fill-rule="evenodd"
+                                                              d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path>
+                                                    </svg></button>
 
-                            </p>
+                                            </p>
+                                        </b-field>
+
+                                    </div>
+                                    <h2>You can click on the image to preview the actual size</h2>
+
+                                    <div class="img-output">
+                                        <a :href="url" target="_blank">
+                                            <img :src="url" align="img.site"/>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <!--/right-->
+
 
                         </div>
-                        <!--/right-->
-
-
                     </div>
-
-
 
 
                     <div class="columns is-multiple">
@@ -166,13 +447,7 @@
                     </div>
 
 
-
-
-
                 </div>
-
-
-
 
 
             </div>
@@ -180,7 +455,6 @@
 
 
     </div>
-
 
 
 </div>
@@ -196,33 +470,37 @@
 <script src="https://unpkg.com/buefy/dist/components/switch"></script>
 <script src="https://unpkg.com/buefy/dist/components/select"></script>
 <script src="https://unpkg.com/buefy/dist/components/slider"></script>
+<script src="https://unpkg.com/buefy/dist/components/toast"></script>
 
 <script>
+
+
+
     new Vue({
         el: '#app',
         components: {
             VSwatches: window['vue-swatches']
         },
-        data:{
+        data: {
+            tooltip_label: 'Copy',
             url: null,
             label_color: null,
-            inputs:{
+            inputs: {
                 width: null,
                 height: null,
                 color: null,
                 color_hex: null,
                 type: null,
             },
-            query:{
+            query: {
                 size: null,
                 label: null,
                 label_color: null,
                 label_font_size: null,
             }
         },
-        computed: {
-        },
-        watch:{
+        computed: {},
+        watch: {
             'inputs': {
                 deep: true,
                 handler(new_val, old_val) {
@@ -245,8 +523,7 @@
             'query.label_color': {
                 deep: true,
                 handler(new_val, old_val) {
-                    if(!this.query.label)
-                    {
+                    if (!this.query.label) {
                         this.query.size = true;
                     }
                     this.getURLString()
@@ -255,8 +532,7 @@
             'query.label_font_size': {
                 deep: true,
                 handler(new_val, old_val) {
-                    if(!this.query.label)
-                    {
+                    if (!this.query.label) {
                         this.query.size = true;
                     }
                     this.getURLString()
@@ -275,37 +551,31 @@
             this.getURLString()
             //---------------------------------------------------------------------
         },
-        methods:{
-            getURLString: function ()
-            {
+        methods: {
+            getURLString: function () {
                 this.setParams();
 
                 let url = '<%= host %>/p';
 
 
-                if(this.inputs.width)
-                {
-                    url += '/'+this.inputs.width;
+                if (this.inputs.width) {
+                    url += '/' + this.inputs.width;
                 }
 
-                if(this.inputs.height)
-                {
-                    url += '/'+this.inputs.height;
+                if (this.inputs.height) {
+                    url += '/' + this.inputs.height;
                 }
 
-                if(this.inputs.color_hex)
-                {
-                    url += '/'+this.inputs.color_hex;
+                if (this.inputs.color_hex) {
+                    url += '/' + this.inputs.color_hex;
                 }
 
-                if(this.inputs.type)
-                {
-                    url += '/'+this.inputs.type;
+                if (this.inputs.type) {
+                    url += '/' + this.inputs.type;
 
                 }
 
-                if(this.label_color_hex)
-                {
+                if (this.label_color_hex) {
                     this.query.label_color = this.label_color_hex;
                 }
 
@@ -314,12 +584,10 @@
                 for (let param in query_inputs) {
                     if (query_inputs[param] === undefined /* In case of undefined assignment */
                         || query_inputs[param] === null
-                        || query_inputs[param] === "")
-                    {
+                        || query_inputs[param] === "") {
                         delete query_inputs[param];
                     }
                 }
-
 
 
                 let query = new URLSearchParams(query_inputs).toString()
@@ -328,41 +596,58 @@
 
                 this.url = url;
 
-                if(query.length > 0)
-                {
-                    this.url += '?'+query;
+                if (query.length > 0) {
+                    this.url += '?' + query;
 
                 }
 
                 console.log('--->url', this.url);
             },
             //-----------------------------------------
-            setParams: function (){
+            setParams: function () {
 
-                if(this.inputs.color_hex && !this.inputs.width)
-                {
+                if (this.inputs.color_hex && !this.inputs.width) {
                     this.inputs.width = 300;
                 }
 
-                if(this.inputs.color_hex &&  !this.inputs.height)
-                {
+                if (this.inputs.color_hex && !this.inputs.height) {
                     this.inputs.height = 300;
                 }
             },
             //-----------------------------------------
-            setWidthHeightColor: function (){
+            setWidthHeightColor: function () {
                 this.setWidthHeight();
 
                 console.log('--->', this.color);
 
-                if(!this.color)
-                {
+                if (!this.color) {
                     this.inputs.color_hex = '666666'
 
                     console.log('--->this.inputs.color_hex', this.inputs.color_hex);
 
                 }
             },
+            //-----------------------------------------
+            copyLink(){
+                const inputText = document.getElementById('link-text');
+                inputText.select();
+
+                try {
+                    const success = document.execCommand('copy');
+                    this.$buefy.toast.open({
+                            message: 'Link Copied',
+                            type: 'is-success'
+                        });
+                } catch (error) {
+                    this.message = 'Oops, failed to copy!';
+                    this.$notification.open({
+                        type: 'is-danger',
+
+                    });
+                } finally {
+                    window.getSelection().removeAllRanges();
+                }
+            }
             //-----------------------------------------
         }
     })

@@ -3,12 +3,13 @@ const path = require('path')
 const ejs = require('ejs')
 const { Readable } = require('stream')
 
+
 const common = require('./Common')
 
 let is_production;
 
-is_production = false
-is_production = true
+is_production = false; //for live site
+is_production = true // for development
 
 
 let host = 'http://127.0.0.1:4000';
@@ -29,9 +30,13 @@ const app = require('fastify')({
     key: fs.readFileSync(path.join(__dirname, './../../ssl/', 'keys', 'b50e1_531d5_9aeb5e1e77b5417ca98f9ce688790876.key')),
     cert: fs.readFileSync(path.join(__dirname, './../../ssl/', 'certs', 'nuxt_getdemo_dev_b50e1_531d5_1629244799_b091936f52e600bb51995f5ce27294cd.crt'))
     }*/
-})
+});
 
-
+app.register(require('fastify-static'), {
+    root: path.join(__dirname, 'public'),
+    prefix: '/public/', // optional: default '/'
+    list: true
+});
 
 // Declare a route
 app.get('/', function (req, reply) {
