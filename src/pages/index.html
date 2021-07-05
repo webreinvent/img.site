@@ -28,6 +28,9 @@
             padding: 1.5rem;
             height: 100%;
         }
+        .repeated-item.right{
+            padding-right: 3rem;
+        }
 
         .left {
             border-right: 1px solid #c9c9c9;
@@ -144,8 +147,25 @@
 
         .output-url {
             border-top: 1px solid #c9c9c9;
+            margin-top: 55px;
+            padding-top: 20px;
+            position: relative;
         }
-
+        .output-url:before, .output-url:after{
+        content: "";
+            position: absolute;
+            top: -1px;
+            height: 1px;
+            width: 3rem;
+            background-color:#c9c9c9 ;
+            display: block;
+        }
+        .output-url:before{
+            left: -3rem;
+        }
+        .output-url:after{
+            right: -3rem;
+        }
         .has-unit-px {
             position: relative;
         }
