@@ -2,263 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <base href="<%= host %>" />
     <title>Generate colorful placeholders for your prototypes, wireframes, web sites and projects.</title>
     <link rel="icon" href="<%= host %>/public/img/favicon.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
     <link rel="stylesheet" href="https://unpkg.com/vue-swatches/dist/vue-swatches.css">
-
-    <style>
-        .hero-body {
-            padding: 1rem 3rem;
-        }
-
-        .logo {
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        h1 {
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 1.75rem;
-            margin-bottom: 0;
-        }
-
-        .middle-warp {
-            border: 1px solid #c9c9c9;
-        }
-
-        .repeated-item {
-            padding: 1.5rem 3rem;
-            height: 100%;
-        }
-
-        .repeated-item.right {
-            padding: 3rem;
-            position: relative;
-        }
-
-        .repeated-item.right h2 {
-            margin-top: 5px;
-        }
-
-        .left {
-            border-right: 1px solid #c9c9c9;
-            position: relative;
-        }
-
-        .left h2 {
-            margin-bottom: 35px;
-        }
-
-        .left:before {
-            background: rgb(237, 30, 121);
-            background: linear-gradient(75deg, rgba(237, 30, 121, 1) 0%, rgba(110, 0, 99, 1) 100%);
-            content: "";
-            position: absolute;
-            left: 0;
-            top: -1px;
-            width: 100%;
-            height: 4px;
-
-        }
-
-        .input, .select select, .taginput .taginput-container.is-focusable, .textarea {
-            border-radius: 0;
-            box-shadow: none;
-            width: 100%;
-            height: 42px;
-            font-weight: 600;
-        }
-
-        .input:active, .input:focus, .is-active.input, .is-active.textarea, .is-focused.input, .is-focused.textarea, .select select.is-active, .select select.is-focused, .select select:active, .select select:focus, .taginput .is-active.taginput-container.is-focusable, .taginput .is-focused.taginput-container.is-focusable, .taginput .taginput-container.is-focusable:active, .taginput .taginput-container.is-focusable:focus, .textarea:active, .textarea:focus {
-            border-color: #ed1e79;
-            box-shadow: none;
-
-        }
-
-        .select {
-            width: 100%;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            font-weight: 500;
-            color: #717171;
-        }
-
-        .field.is-grouped .field:not(:last-child) {
-            margin-right: 6%;
-        }
-
-        .field-body .field .field {
-            width: 47%;
-            margin-bottom: 1rem;
-        }
-
-        .sb-flex {
-            border: 1px solid #dbdbdb;
-            display: flex;
-            align-items: center;
-            height: 42px;
-        }
-
-        .sb-flex .label {
-            order: 2;
-            margin: 0;
-            margin-left: 10px;
-            font-size: 13px;
-        }
-
-        .vue-swatches__trigger__wrapper
-        .vue-swatches__trigger {
-            border-radius: 0 !important;
-            border-width: 1px;
-            margin-left: -1px;
-            margin-top: -1px;
-        }
-
-        .vue-swatches {
-            line-height: 0;
-
-        }
-
-        .b-slider .b-slider-track {
-            background-image: -moz-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-            background-image: -webkit-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-            background-image: -ms-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-        }
-
-        .b-slider .b-slider-thumb-wrapper .b-slider-thumb, .switch input[type=checkbox]:checked + .check {
-
-            background-image: -moz-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-            background-image: -webkit-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-            background-image: -ms-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-
-        }
-
-        .b-slider .b-slider-thumb-wrapper .b-slider-thumb {
-            box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.61);
-            border: 4px solid #ffffff;
-            border-radius: 100%;
-        }
-
-        .b-tooltip.is-primary .tooltip-content {
-            background: #ffffff;
-            color: #717171;
-        }
-
-        .b-tooltip.is-top.is-primary .tooltip-content::before {
-            border-top-color: #dad4d4;
-        }
-
-        .label {
-            font-size: .75rem;
-            color: #717171;
-        }
-
-        .control-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #717171;
-        }
-
-        .img-output {
-            /*border: 1px solid rgb(221, 221, 221);
-            box-shadow: 0px 8px 95px 0px rgba(0, 0, 0, 0.14);
-            background: #f3f3f3;*/
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 0;
-            overflow: hidden;
+    <link rel="stylesheet" href="<%= host %>/public/css/style.css">
 
 
-        }
 
-        .img-output img {
-            max-width: none;
-        }
-
-        .output-url {
-            position: absolute;
-            left: -1px;
-            top: -1px;
-            width: calc(100% + 3px);
-
-        }
-
-        .output-url .input {
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace;
-            font-size: 12px;
-            color: #24292e;
-            font-weight: normal;
-            height: 34px;
-        }
-
-        .output-url .button {
-            background-color: #f5f5f5;
-            border-color: #dbdbdb;
-            color: #7a7a7a;
-            box-shadow: none;
-            pointer-events: all;
-            height: 34px;
-            border-radius: 0;
-        }
-        .output-url .button:hover{
-            opacity: .7;
-        }
-        .has-unit-px {
-            position: relative;
-        }
-
-        .has-unit-px:after {
-            content: 'px';
-            position: absolute;
-            font-size: 1rem;
-            color: #b2b2b2;
-            right: 0.9375rem;
-            top: 7px;
-
-        }
-
-        .has-unit-px .input {
-            padding-right: 35px;
-        }
-
-        .has-margin-top-15 {
-            margin-top: 1.5rem
-        }
-
-        button.is-primary {
-            background-image: -moz-linear-gradient(-49deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-            background-image: -webkit-linear-gradient(-49deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-            background-image: -ms-linear-gradient(-49deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-            box-shadow: 0px 13px 51px 0px rgba(125, 4, 102, 0.31);
-            width: 229px;
-            height: 57px;
-
-        }
-
-        hr {
-            height: 1px;
-            background: #b8b8b8;
-            margin-top: 0;
-            margin-bottom: 2rem;
-        }
-
-        .notices .toast {
-            opacity: 1;
-        }
-
-        /* .notices .toast.is-success {
-             background-image: -moz-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-             background-image: -webkit-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-             background-image: -ms-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
-         }*/
-    </style>
 
 
 </head>
@@ -312,15 +66,18 @@
                             <!--left-->
                             <div class="column is-5">
                                 <div class="left repeated-item">
-                                    <h2>Quickly and easily create placeholder images</h2>
+                                    <div class="has-text-centered">
+                                        <p ><b>Quickly and easily create placeholder images</b></p>
+                                        <br/>
+                                    </div>
                                     <b-field grouped>
 
                                         <b-field label="Width" label-position="on-border" class="has-unit-px">
-                                            <b-input v-model="inputs.width"></b-input>
+                                            <b-input v-model="inputs.uri.width"></b-input>
                                         </b-field>
 
                                         <b-field label="Height" label-position="on-border" class="has-unit-px">
-                                            <b-input v-model="inputs.height"></b-input>
+                                            <b-input v-model="inputs.uri.height"></b-input>
                                         </b-field>
 
                                     </b-field>
@@ -329,19 +86,23 @@
 
                                         <b-field label="Image Color" class="sb-flex">
                                             <v-swatches
-                                                    v-model="inputs.color"
+                                                    v-model="inputs.uri.color"
                                                     show-fallback
+                                                    fallback-input-type="color"
                                                     popover-x="left"
                                             ></v-swatches>
                                         </b-field>
 
                                         <b-field>
-                                            <b-select v-model="inputs.type" placeholder="Image Type">
-                                                <option value="null">
+                                            <b-select v-model="inputs.uri.type" placeholder="Image Type">
+                                                <option value="stripes">
                                                     Stripes
                                                 </option>
                                                 <option value="solid-stripes">
                                                     Solid Stripes
+                                                </option>
+                                                <option value="solid-box">
+                                                    Solid Box
                                                 </option>
                                             </b-select>
                                         </b-field>
@@ -350,13 +111,14 @@
                                     <b-field grouped>
 
                                         <b-field label="Text Over Image" label-position="on-border">
-                                            <b-input v-model="query.label"></b-input>
+                                            <b-input v-model="inputs.query.label"></b-input>
                                         </b-field>
 
                                         <b-field label="Text Color" class="sb-flex">
                                             <v-swatches
-                                                    v-model="label_color"
+                                                    v-model="inputs.query.label_color"
                                                     show-fallback
+                                                    fallback-input-type="color"
                                                     popover-x="left"
                                             ></v-swatches>
                                         </b-field>
@@ -369,7 +131,7 @@
                                                   tooltip-always
                                                   :min="15"
                                                   :max="25" :step="1"
-                                                  v-model="query.label_font_size">
+                                                  v-model="inputs.query.label_font_size">
                                         </b-slider>
 
                                         <!--<b-input v-model="query.label_font_size" placeholder=""></b-input>-->
@@ -377,7 +139,7 @@
                                     </b-field>
 
                                     <b-field class="has-margin-top-15">
-                                        <b-switch v-model="query.size">Show Text Over Image</b-switch>
+                                        <b-switch v-model="inputs.query.size">Show Text Over Image</b-switch>
 
                                     </b-field>
                                     <!-- <button type="button" class="button is-primary is-rounded has-margin-top-15">Primary</button>-->
@@ -414,11 +176,12 @@
                                         </b-field>
 
                                     </div>
-                                    <h2>You can click on the image to preview the actual size</h2>
+                                    <p>You can click on the image to preview the actual size</p>
+                                    <br/>
 
                                     <div class="img-output">
                                         <a :href="url" target="_blank">
-                                            <img :src="url" align="img.site"/>
+                                            <img :src="url" :width="inputs.uri.width" :height="inputs.uri.height" />
                                         </a>
                                     </div>
 
@@ -468,185 +231,8 @@
 <script src="https://unpkg.com/buefy/dist/components/slider"></script>
 <script src="https://unpkg.com/buefy/dist/components/toast"></script>
 <script src="https://unpkg.com/buefy/dist/components/tooltip"></script>
-
-<script>
-
-
-    new Vue({
-        el: '#app',
-        components: {
-            VSwatches: window['vue-swatches']
-        },
-        data: {
-            tooltip_label: 'Copy',
-            url: null,
-            label_color: null,
-            inputs: {
-                width: null,
-                height: null,
-                color: null,
-                color_hex: null,
-                type: null,
-            },
-            query: {
-                size: null,
-                label: null,
-                label_color: null,
-                label_font_size: null,
-            }
-        },
-        computed: {},
-        watch: {
-            'inputs': {
-                deep: true,
-                handler(new_val, old_val) {
-                    this.getURLString()
-                }
-            },
-            'inputs.color': {
-                deep: true,
-                handler(new_val, old_val) {
-                    this.inputs.color_hex = new_val.replace("#", '');
-                    this.getURLString()
-                }
-            },
-            'query': {
-                deep: true,
-                handler(new_val, old_val) {
-                    this.getURLString()
-                }
-            },
-            'query.label_color': {
-                deep: true,
-                handler(new_val, old_val) {
-                    if (!this.query.label) {
-                        this.query.size = true;
-                    }
-                    this.getURLString()
-                }
-            },
-            'query.label_font_size': {
-                deep: true,
-                handler(new_val, old_val) {
-                    if (!this.query.label) {
-                        this.query.size = true;
-                    }
-                    this.getURLString()
-                }
-            },
-            'label_color': {
-                deep: true,
-                handler(new_val, old_val) {
-                    this.query.label_color = new_val.replace("#", '');
-                    this.getURLString()
-                }
-            },
-        },
-        mounted() {
-            //---------------------------------------------------------------------
-            this.getURLString()
-            //---------------------------------------------------------------------
-        },
-        methods: {
-            getURLString: function () {
-                this.setParams();
-
-                let url = '<%= host %>/p';
+<script src="<%= host %>/public/js/script.js"></script>
 
 
-                if (this.inputs.width) {
-                    url += '/' + this.inputs.width;
-                }
-
-                if (this.inputs.height) {
-                    url += '/' + this.inputs.height;
-                }
-
-                if (this.inputs.color_hex) {
-                    url += '/' + this.inputs.color_hex;
-                }
-
-                if (this.inputs.type) {
-                    url += '/' + this.inputs.type;
-
-                }
-
-                if (this.label_color_hex) {
-                    this.query.label_color = this.label_color_hex;
-                }
-
-                let query_inputs = JSON.parse(JSON.stringify(this.query));
-
-                for (let param in query_inputs) {
-                    if (query_inputs[param] === undefined /* In case of undefined assignment */
-                        || query_inputs[param] === null
-                        || query_inputs[param] === "") {
-                        delete query_inputs[param];
-                    }
-                }
-
-
-                let query = new URLSearchParams(query_inputs).toString()
-
-                console.log('--->', query);
-
-                this.url = url;
-
-                if (query.length > 0) {
-                    this.url += '?' + query;
-
-                }
-
-                console.log('--->url', this.url);
-            },
-            //-----------------------------------------
-            setParams: function () {
-
-                if (this.inputs.color_hex && !this.inputs.width) {
-                    this.inputs.width = 300;
-                }
-
-                if (this.inputs.color_hex && !this.inputs.height) {
-                    this.inputs.height = 300;
-                }
-            },
-            //-----------------------------------------
-            setWidthHeightColor: function () {
-                this.setWidthHeight();
-
-                console.log('--->', this.color);
-
-                if (!this.color) {
-                    this.inputs.color_hex = '666666'
-
-                    console.log('--->this.inputs.color_hex', this.inputs.color_hex);
-
-                }
-            },
-            //-----------------------------------------
-            copyLink() {
-                const inputText = document.getElementById('link-text');
-                inputText.select();
-
-                try {
-                    const success = document.execCommand('copy');
-                    this.$buefy.toast.open({
-                        message: 'Link Copied',
-                        type: 'is-success'
-                    });
-                } catch (error) {
-                    this.message = 'Oops, failed to copy!';
-                    this.$notification.open({
-                        type: 'is-danger',
-
-                    });
-                } finally {
-                    window.getSelection().removeAllRanges();
-                }
-            }
-            //-----------------------------------------
-        }
-    })
-</script>
 </body>
 </html>
