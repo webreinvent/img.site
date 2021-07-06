@@ -30,8 +30,8 @@ module.exports = {
                 pattern = this.solidStripes();
 
                 break;
-            case 'circle':
-
+            case 'solid-box':
+                pattern = this.solidBox();
                 break;
         }
 
@@ -40,6 +40,7 @@ module.exports = {
         return this.prefixCode()+pattern+this.suffixCode();
 
     },
+    //--------------------------------------------------------------
     init: function (attrs)
     {
         this.attrs = {
@@ -51,7 +52,7 @@ module.exports = {
             size: false,
             label: null,
             label_color: null,
-            label_font_size: 1.1,
+            label_font_size: 15,
         }
 
 
@@ -92,6 +93,7 @@ module.exports = {
         //console.log('final attrs--->', this.attrs);
 
     },
+    //--------------------------------------------------------------
     getColorHex: function (string)
     {
         let hex = null;
@@ -116,17 +118,19 @@ module.exports = {
 
         return hex;
     },
-
+    //--------------------------------------------------------------
     prefixCode: function ()
     {
         let code = '<svg xmlns="http://www.w3.org/2000/svg" width="'+this.attrs.width+'" height="'+this.attrs.height+'" >';
         return code;
     },
+    //--------------------------------------------------------------
     suffixCode: function()
     {
         let code = '</svg>';
         return code;
     },
+    //--------------------------------------------------------------
     labelText: function ()
     {
         let label = '';
@@ -152,6 +156,7 @@ module.exports = {
 
         return label;
     },
+    //--------------------------------------------------------------
     label: function ()
     {
         let label = '';
@@ -167,13 +172,14 @@ module.exports = {
 
         if(this.attrs.size || this.attrs.label)
         {
-            label = '<text x="50%" y="50%" font-family="monospace" font-size="'+this.attrs.label_font_size+'px" fill="'+color+'" dominant-baseline="middle" text-anchor="middle">' +
+            label = '<text x="50%" y="50%" font-family="arial" font-size="'+this.attrs.label_font_size+'px" fill="'+color+'" dominant-baseline="middle" text-anchor="middle">' +
                 this.labelText()
                 +'</text>';
         }
 
         return label;
     },
+    //--------------------------------------------------------------
     stripes: function ()
     {
 
@@ -188,6 +194,7 @@ module.exports = {
         return pattern;
 
     },
+    //--------------------------------------------------------------
     solidStripes: function ()
     {
 
@@ -201,6 +208,17 @@ module.exports = {
 
         return pattern;
     },
+    //--------------------------------------------------------------
+    solidBox: function ()
+    {
+
+        let pattern = '<rect width="100%" height="100%" fill="'+this.attrs.color_hex+'" opacity="1" />'
+
+        return pattern;
+    },
+    //--------------------------------------------------------------
+    //--------------------------------------------------------------
+    //--------------------------------------------------------------
 
 
 };
