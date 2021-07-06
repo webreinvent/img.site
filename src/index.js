@@ -8,7 +8,7 @@ const common = require('./Common')
 
 let is_production;
 
-is_production = false; //for live site
+//is_production = false; //for live site
 is_production = true // for development
 
 
