@@ -195,9 +195,11 @@ h2 {
     height: 34px;
     border-radius: 0;
 }
-.output-url .button:hover{
+
+.output-url .button:hover {
     opacity: .7;
 }
+
 .has-unit-px {
     position: relative;
 }
@@ -246,3 +248,46 @@ hr {
      background-image: -webkit-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
      background-image: -ms-linear-gradient(-45deg, rgb(237, 30, 121) 0%, rgb(110, 0, 99) 100%);
  }*/
+
+
+@media only screen and (max-width: 768px) {
+    .left {
+        border-right: none;
+    }
+
+    .output-url {
+        width: calc(100% + 2px);
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-body {
+        padding: 1rem 1.5rem;
+    }
+
+    .repeated-item {
+        padding: 1.5rem 2rem;
+    }
+
+    .field-body .field .field {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .field.is-grouped {
+        display: block;
+    }
+
+    hr {
+        margin-bottom: 1.5rem;
+        margin-top: 1.5rem;
+    }
+}
