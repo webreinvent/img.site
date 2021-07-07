@@ -105,7 +105,7 @@ h2 {
     border-radius: 0 !important;
     border-width: 1px;
     margin-left: -1px;
-    margin-top: -1px;
+    /*margin-top: -1px;*/
 }
 
 .vue-swatches {
