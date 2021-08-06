@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-    <img src="https://img.site/public/img/logo.png" width="50%" />
+    <img src="https://img.site/public/img/logo.png" />
 </p>
 
 <br/>
@@ -10,6 +10,7 @@
 
 **Lightest** and **fastest** way to generate colorful **placeholders** for your prototypes, wireframes, websites, and projects. Images fully optimized and Scalable Vector Graphics (SVG) in any size or color you need.
 
+Visit: [https://img.site](https://img.site)
 
 <br/>
 
