@@ -4,7 +4,7 @@
     "development": "node server.js"
   },
   "dependencies": {
-    "@types/node": "^15.14.1",
+    "@types/node": "^15.14.2",
     "child_process": "^1.0.2",
     "chokidar": "^3.5.2",
     "color-name-list": "^8.13.0",
