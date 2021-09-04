@@ -7,7 +7,7 @@
     "@types/node": "^15.14.2",
     "child_process": "^1.0.2",
     "chokidar": "^3.5.2",
-    "color-name-list": "^8.16.0",
+    "color-name-list": "^8.17.0",
     "ejs": "^3.1.6",
     "fastify": "^3.19.1",
     "fastify-static": "^4.2.3",
