@@ -14,7 +14,6 @@
     "invert-color": "^2.0.0",
     "path": "^0.12.7",
     "slugify": "^1.6.0",
-    "stream": "^0.0.2",
-    "valid-hex-color": "^1.1.1"
+    "stream": "^0.0.2"
   }
 }

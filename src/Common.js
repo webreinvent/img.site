@@ -2,7 +2,7 @@ const namedColors = require('color-name-list');
 const slugify = require('slugify')
 const invert = require('invert-color');
 
-const validHexColor = require('valid-hex-color');
+//const validHexColor = require('valid-hex-color');
 
 
 module.exports = {
@@ -96,7 +96,7 @@ module.exports = {
     //--------------------------------------------------------------
     getColorHex: function (string)
     {
-        let hex = null;
+        /*let hex = null;
         if(validHexColor.check(string))
         {
             hex = string;
@@ -114,6 +114,17 @@ module.exports = {
             } else{
                 hex = '#666666'
             }
+        }*/
+
+
+        let input_color = slugify(string, {lower:true});
+        let slug = null;
+        let color = namedColors.find(color => slugify(color.name, {lower: true}) === input_color)
+        if(color !== undefined && color && color.hex)
+        {
+            hex = color.hex;
+        } else{
+            hex = '#666666'
         }
 
         return hex;
