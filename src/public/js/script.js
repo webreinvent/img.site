@@ -186,7 +186,7 @@ new Vue({
 
 
             for (let param in this.output.query) {
-                
+
                 if(param === 'label_font_size' && parseInt(this.output.query[param]) === 15)
                 {
                     delete this.output.query[param];
