@@ -119,9 +119,16 @@ new Vue({
                 this.setOutput()
             }
         },
+        'inputs.query.label_color': {
+            deep: true,
+            handler(new_val, old_val) {
+                this.setOutput()
+            }
+        },
         'inputs.query.label_font_size': {
             deep: true,
             handler(new_val, old_val) {
+
 
                 if(parseInt(new_val) < 16)
                 {
@@ -144,14 +151,12 @@ new Vue({
         setOutput: function ()
         {
             this.output = JSON.parse(JSON.stringify(this.inputs));
+
             this.getURLString();
         },
         //-----------------------------------------
         getURLString: function () {
             let url = this.base_url+'/p';
-
-            console.log('--->uri', this.output.uri);
-            console.log('--->query', this.output.query);
 
             if (this.output.uri.width) {
                 url += '/' + this.output.uri.width;
@@ -177,28 +182,27 @@ new Vue({
                     delete this.output.query[param];
                 }
 
+                console.log('param--->', param);
+
                 if(param === 'label_font_size' && parseInt(this.output.query[param]) === 15)
                 {
                     delete this.output.query[param];
                 }
 
+                if(param === 'label_color')
+                {
+                    this.output.query[param] = this.output.query[param].replace("#", "");
+                }
+
             }
 
-
-            console.log('this.output.query--->', this.output.query);
-
-
             let query = new URLSearchParams(this.output.query).toString()
-
-            console.log('query--->', query);
 
             if (query.length > 0) {
                 url += '?' + query;
             }
 
             this.url = url;
-
-            console.log('--->this.url', this.url);
 
         },
         //-----------------------------------------

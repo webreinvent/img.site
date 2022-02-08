@@ -19,6 +19,7 @@ module.exports = {
             }
         }
 
+
         this.init(attrs);
 
         let pattern = this.stripes();
@@ -66,7 +67,6 @@ module.exports = {
             attrs.height = attrs.width;
         }
 
-        //console.log('--->attrs.color', attrs.color);
 
         if(attrs.color !== undefined && attrs.color)
         {
@@ -96,7 +96,8 @@ module.exports = {
     //--------------------------------------------------------------
     getColorHex: function (string)
     {
-        /*let hex = null;
+        let hex = null;
+        /*
         if(validHexColor.check(string))
         {
             hex = string;
@@ -116,14 +117,39 @@ module.exports = {
             }
         }*/
 
+        if(string.includes("%23"))
+        {
+            string = string.replace("%23", "");
+            string = string.replace("#", "");
+            string = "#"+string;
+
+        }
+
+        if(!string.includes("#"))
+        {
+            string = "#"+string;
+        }
+
+        /*console.log('string--->', string);
 
         let input_color = slugify(string, {lower:true});
         let slug = null;
         let color = namedColors.find(color => slugify(color.name, {lower: true}) === input_color)
+
+        console.log('color --->', color);
+
         if(color !== undefined && color && color.hex)
         {
             hex = color.hex;
         } else{
+            hex = '#666666'
+        }*/
+
+        if(string)
+        {
+            hex = string;
+        } else
+        {
             hex = '#666666'
         }
 
@@ -161,10 +187,6 @@ module.exports = {
             label += this.attrs.label;
         }
 
-        console.log('--->', this.attrs);
-
-        console.log('label--->', label);
-
         return label;
     },
     //--------------------------------------------------------------
@@ -193,6 +215,7 @@ module.exports = {
     //--------------------------------------------------------------
     stripes: function ()
     {
+
 
         let pattern = '<defs>\n' +
             '\t\t<pattern id="pattern_310cp0" patternUnits="userSpaceOnUse" width="9.5" height="9.5" ' +
