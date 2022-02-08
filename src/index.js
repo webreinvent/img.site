@@ -9,7 +9,7 @@ const common = require('./Common')
 let is_production;
 
 is_production = false;  // for development
-is_production = true //for live site
+//is_production = true //for live site
 
 
 let host = 'http://127.0.0.1:4000';

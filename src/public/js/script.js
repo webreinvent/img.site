@@ -175,15 +175,18 @@ new Vue({
             }
 
             for (let param in this.output.query) {
+
                 if (this.output.query[param] === undefined /* In case of undefined assignment */
                     || this.output.query[param] === null
                     || this.output.query[param] === false
                     || this.output.query[param] === "") {
                     delete this.output.query[param];
                 }
+            }
 
-                console.log('param--->', param);
 
+            for (let param in this.output.query) {
+                
                 if(param === 'label_font_size' && parseInt(this.output.query[param]) === 15)
                 {
                     delete this.output.query[param];
