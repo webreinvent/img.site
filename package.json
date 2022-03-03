@@ -14,6 +14,8 @@
     "invert-color": "^2.0.0",
     "path": "^0.12.7",
     "slugify": "^1.6.0",
-    "stream": "^0.0.2"
+    "stream": "^0.0.2",
+    "fs": "^0.0.1-security",
+    "pusher": "^5.0.1"
   }
 }

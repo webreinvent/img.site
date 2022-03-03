@@ -1,4 +1,5 @@
 const fs = require('fs')
+const Pusher = require("pusher")
 const path = require('path')
 const ejs = require('ejs')
 const { Readable } = require('stream')
@@ -9,7 +10,7 @@ const common = require('./Common')
 let is_production;
 
 is_production = false;  // for development
-is_production = true //for live site
+//is_production = true //for live site
 
 
 let host = 'http://127.0.0.1:4000';
@@ -74,6 +75,105 @@ app.get('/p/:width/:height/:color/:type', function (req, reply) {
     return  reply.type('image/svg+xml').send(src);
 })
 
+
+//--------------------------------------------------
+
+app.get('/api/send', function (req, reply)
+{
+
+
+    let response = {};
+
+    const inputs = req.query;
+
+    if(
+        !inputs.training_record_id
+        || !inputs.training_center_id
+        || !inputs.training_center_name
+        || !inputs.horse_id
+        || !inputs.horse_name
+        || !inputs.heart_rate
+    )
+    {
+        response.status = 'failed';
+        response.errors = [
+            "training_record_id: is required",
+            "training_center_id: is required",
+            "training_center_name: is required",
+            "horse_id: is required",
+            "horse_name: is required",
+            "heart_rate: is required",
+            "latitude: is optional",
+            "longitude: is optional",
+            "step_counter: is optional",
+            "speed: is optional",
+            "ehm_id: is optional",
+        ];
+        return  reply.type('application/json').send(response);
+    }
+
+
+    try{
+        const pusher = new Pusher({
+            appId: '1349523',
+            key: '7ad5e5bcd4d2bf5bb67f',
+            secret: '600a4dc4ef7f2bc39ebb',
+            cluster: 'ap2',
+            useTLS: true,
+        });
+
+        // for live racecourse (training center) page
+        pusher.trigger(
+            'live-training-center-' + inputs.training_center_id,
+            'center.new.data',
+            inputs
+        );
+
+        pusher.trigger(
+            'live-horse-' + inputs.horse_id,
+            'horse.new.data',
+            inputs
+        );
+
+        let json = JSON.stringify(inputs);
+
+        let file = "./live.txt";
+
+        fs.appendFileSync(file, json+",");
+
+        response =  {
+            status: "success",
+            messages: ["data sent to pusher and stored in txt file"],
+        };
+
+        return  reply.type('application/json').send(response);
+
+    }catch (e)
+    {
+        response =  {
+            status: "failed",
+            error: e,
+        };
+
+        return  reply.type('application/json').send(response);
+    }
+
+
+    let data =  {
+        status:"success",
+        data: {
+            "pusher": true,
+            "txt": true,
+            "db": false,
+        }
+    }
+
+
+    return  reply.type('application/json').send(data);
+
+})
+
+//--------------------------------------------------
 
 // Run the server!
 if(!is_production)
