@@ -10,7 +10,7 @@
     "color-name-list": "^8.16.0",
     "ejs": "^3.1.6",
     "fastify": "^3.19.1",
-    "fastify-static": "^4.2.3",
+    "fastify-static": "^4.7.0",
     "invert-color": "^2.0.0",
     "path": "^0.12.7",
     "slugify": "^1.6.0",
